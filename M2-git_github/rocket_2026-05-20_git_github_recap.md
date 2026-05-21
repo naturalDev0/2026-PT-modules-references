@@ -252,9 +252,10 @@ git config user.email "your email address"
 5. Select `Clone Repository` > Paste weblink on the prompt > Press `Enter` to confirm
 
 6. Depending on which OS you're on:
-    1. MacOS    - fill in sign-in details on git credentials helper
-    when prompted.
-    2. Windows  - don't require.
+   
+   1. MacOS    - fill in sign-in details on git credentials helper
+      when prompted.
+   2. Windows  - don't require.
 
 7. Select the desired folder location to download the repository.
 
