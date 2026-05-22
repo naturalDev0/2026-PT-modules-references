@@ -10,10 +10,26 @@
 # select files to create save point
 # move the files into staging
 git add file_name.txt file_name_2.txt ...
+
 # add every changes from all working directories and subdirectories
 git add .
 git add * # OR this
 ```
+
+##### Difference between `git add .` and `git add *`
+
+| **Feature / Behavior**            	| **`git add .`**                             	| **`git add *`**                             	|
+|-----------------------------------	|---------------------------------------------	|---------------------------------------------	|
+| Who interprets the command?       	| Git itself                                  	| Your terminal shell (Bash, Zsh, etc.)       	|
+| Hidden files (.env, .gitignore    	| Staged (Includes everything)                	| Ignored (Shell wildcards skip dotfiles)     	|
+| Deleted files (Modern Git)        	| Staged                                      	| Staged                                      	|
+| Files in parent/outer directories 	| Ignored (Only looks down from current path) 	| Ignored (Only looks down from current path) 	|
+| Subdirectory contents             	| Staged (Recurses deeply)                    	| Staged (Recurses deeply)                    	|
+| Accidental credential leaks       	| High risk (Easily stages hidden .env files) 	| Low risk (Skips root hidden files)          	|****
+
+##### Key Takeaway between `git add .` and `git add *`
+* Use `git add .` when you want a blanket save of everything in your current directory, <ins>including configuration files</ins>.
+* Use `git add *` when you want to stage all visible files while <ins>intentionally leaving your hidden configuration files alone</ins>.
 
 #### commit
 
@@ -21,8 +37,10 @@ git add * # OR this
 # create save point
 # compile all the files together into your local repository
 git commit -m "write your message here"
+
 # e.g. removed the bug_report as no longer in use.
 git commit -m "remove bug report"
+
 # output
 [task_a 251efd8] remove bug report
  1 file changed, 0 insertions(+), 0 deletions(-)
@@ -37,8 +55,10 @@ git commit -m "title of the commit" -m "body message of the commit"
 ```bash
 # upload your "save points" aka commits to remote repository
 git push remote_name branch_name
+
 # e.g. upload new `hotfix1` branch to remote `origin`
 git push --set-upstream origin hotfix1
+
 # output
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
@@ -66,31 +86,38 @@ git push
 ```bash
 # (1) view existing branches
 git branch
+
 # output (1)
   feature1
   feature2
 * hotfix1
   main
 
+
 # (2) OR view latest commit details in branch
 git branch --verbose
 git branch -v # shorthand
-# output
+
+# output (2)
   feature1 37e0192 fourth file
   feature2 df23d70 new files added.
 * hotfix1  23ed3fc bug is fixed. report is generated.
   main     23ed3fc [ahead 2] bug is fixed. report is generated.
 
+
 # (3) OR view with upstream details
 git branch -vv
+
 # output (3)
   feature1 37e0192 fourth file
   feature2 df23d70 [origin/feature2] new files added.
 * hotfix1  23ed3fc bug is fixed. report is generated.
   main     23ed3fc [origin/main: ahead 2] bug is fixed. report is generated.
 
+
 # (4) Show all branches including remote branches
 git branch -a
+
 # output (4)
   feature1
   feature2
@@ -99,10 +126,12 @@ git branch -a
   remotes/origin/feature2 # exist on remote repo
   remotes/origin/main # exist on remote repo
 
+
 # (5) Delete branch
 git branch -d branch_name
 # e.g. delete feature1 branch
 git branch -d feature1
+
 # output (5)
 Deleted branch feature1 (was 37e0192).
 ```
@@ -112,13 +141,15 @@ Deleted branch feature1 (was 37e0192).
 ```bash
 # (1) view available remote repositories
 git remote
-# output
+
+# output (1)
 origin
 
 # (2) view available remote repos in detailed
 git remote --verbose
 git remote -v
-# output
+
+# output (2)
 origin  https://github.com/naturalDev0/firsts_demo_project.git (fetch)
 origin  https://github.com/naturalDev0/firsts_demo_project.git (push)
 ```
@@ -131,7 +162,9 @@ origin  https://github.com/naturalDev0/firsts_demo_project.git (push)
 # merge conflicts, etc.
 git status
 
-# output
+
+# outputs
+
 # (1) when everything is clear
 On branch task_a
 nothing to commit, working tree clean
@@ -190,17 +223,22 @@ Date:   Mon May 18 21:58:40 2026 +0800
 ```bash
 # switch to another branch
 git checkout branch_name
+
 # e.g. switch to main branch
 git checkout main
+
 # output
 Switched to branch 'main'
 Your branch is ahead of 'origin/main' by 2 commits.
   (use "git push" to publish your local commits)
 
+
 # OR create a new branch and switch to it
 git checkout -b branch_na
+
 # e.g. create branch name, task_a, and switch to it.
 git checkout -b task_a
+
 # output
 Switched to a new branch 'task_a'
 ```
@@ -212,7 +250,9 @@ Switched to a new branch 'task_a'
 # !NOTE: Always check out the target branch first
 # before merging the source into it.
 # e.g. merging task_a into main
+
 git checkout main # OR skip this if you're inside
+
 git merge task_a # merge task_a into main
 
 # output
