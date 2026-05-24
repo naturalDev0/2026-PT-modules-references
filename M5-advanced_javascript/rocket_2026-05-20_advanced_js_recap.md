@@ -1,4 +1,4 @@
-# Recap 20 May 2026 - Values and Variables in JavaScript
+# Recap 23 May 2026 - Values and Variables in JavaScript
 
 ## Variable Declarations
 
@@ -42,6 +42,7 @@ var company = "google inc.";
 2 ** 2 // ams: 4
 
 // Remainder - usually used to find if the number is odd or even.
+// (aka modulos)
 %
 // e.g. the remainder of 100 divided by 3
 100 % 3 // ans: 1
@@ -82,7 +83,7 @@ let age = "2" * 5;
 // Other times maybe counterintuitive
 let carPlateNumber = "901" + 9;
 // converts number 9 => string "9"
-// thus answer carPlateNumber = "9019". 
+// thus answer carPlateNumber = "9019".
 ```
 
 ### Emphasis
@@ -171,7 +172,7 @@ if (myNumber > 1) {
 // not equals to
 !=
 // not equal value, not equal type
-!===
+!==
 // greater than
 >
 // lesser than
@@ -261,7 +262,10 @@ const trafficLight = timesUp === 0 ? "green" : "red";
 
 ### Order of Precedence
 
-*subject to changes in future*.
+*subject to changes in future by the javascript community.*.
+
+***!!! IMPORTANT TO KNOW !!!***
+
 
 1. `()` brackets
 
