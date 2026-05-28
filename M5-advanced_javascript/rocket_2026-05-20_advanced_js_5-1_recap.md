@@ -266,7 +266,6 @@ const trafficLight = timesUp === 0 ? "green" : "red";
 
 ***!!! IMPORTANT TO KNOW !!!***
 
-
 1. `()` brackets
 
 2. variable substitution
